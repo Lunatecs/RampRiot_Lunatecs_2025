@@ -1,5 +1,3 @@
-
-
 package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.*;
@@ -51,36 +49,15 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.LimelightHelpers;
-import frc.robot.RobotContainer;
 import frc.robot.generated.TunerConstants.TunerSwerveDrivetrain;
 import static frc.robot.LimelightHelpers.*;
-//import static frc.robot.Constants.NormalAlignmentPoses.*;
-
-
-
-
-
-
-
-
-
-
-
-import static frc.robot.Constants.RaritanAlignmentPoses.*;
-//current using ROBOCON ADI ALIGNMENT Poses
-
-
+import static frc.robot.Constants.NotOurAlignmentPoses.*;
 import static frc.robot.Constants.ReefPoses.K_CONSTRAINTS_Barging;
 /**
  * Class that extends the Phoenix 6 SwerveDrivetrain class and implements
  * Subsystem so it can easily be used in command-based projects.
  */
 public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Subsystem {
-
-
-    private static final boolean USE_LIMELIGHT_ONLY = false; // set to true for Limelight-only pose
-
-
     private static final double kSimLoopPeriod = 0.005; // 5 ms
     private Notifier m_simNotifier = null;
     private double m_lastSimTime;
@@ -341,13 +318,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             return m_sysIdRoutineToApply.dynamic(direction);
         }
     
-        /* @Override
+        @Override
         public void periodic() {
-          SmartDashboard.putString("Robot Pose", "X:" + getPose().getX() +
-            " Y:" + getPose().getY() +
-           " R:" + getPose().getRotation().getDegrees());
           pose.update(getPigeon2().getRotation2d(), getModulePositions());
-          SmartDashboard.putNumber("null", getState().Pose.getRotation().getDegrees());
+          SmartDashboard.putNumber("Swerve Robot Pose", getState().Pose.getRotation().getDegrees());
           // // SmartDashboard.putBoolean("Range valid", distanceSensor.isRangeValid());
           // // SmartDashboard.putNumber("Distance sensed", getSensorVal());
           
@@ -362,7 +336,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
               pose.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
             }
           }
-          // if the angular velocity is greater than 360 degrees per second, ignore vision updates
+          // if our angular velocity is greater than 360 degrees per second, ignore vision updates
           
           
             var array = new double[] {
@@ -372,13 +346,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             };
             SmartDashboard.putNumberArray("MyPose", array);
           //   // SmartDashboard.putNumber("Rot", getPose().getRotation().getDegrees());
-            
+            /*
              * Periodically try to apply the operator perspective.
              * If we haven't applied the operator perspective before, then we should apply it regardless of DS state.
              * This allows us to correct the perspective in case the robot code restarts mid-match.
              * Otherwise, only check and apply the operator perspective if the DS is disabled.
              * This ensures driving behavior doesn't change until an explicit disable event occurs during testing.
-             
+             */
             if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
                 DriverStation.getAlliance().ifPresent(allianceColor -> {
                     setOperatorPerspectiveForward(
@@ -389,66 +363,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                     m_hasAppliedOperatorPerspective = true;
                 });
             }
+            SmartDashboard.putString("Robot Pose", pose.toString());
         }
-        */
-        @Override
-    public void periodic() {
-        if (USE_LIMELIGHT_ONLY) {
-          // Limelight-only pose update
-          if (getTVLeft()) {
-              var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-left");
-              if (llMeasurement != null && llMeasurement.tagCount > 0) {
-                  // Only update pose if robot is not spinning too fast
-                  double omegaRps = Units.radiansToRotations(getState().Speeds.omegaRadiansPerSecond);
-                  if (Math.abs(omegaRps) < 2.0) {
-                      pose.resetPose(llMeasurement.pose); // Reset the estimator to Limelight pose
-                  }
-              }
-          }
-      } else {
-          //Original estimator-based pose update
-          pose.update(getPigeon2().getRotation2d(), getModulePositions());
-          //OUR METHOD
-          var driveState = getState();
-          double headingDeg = driveState.Pose.getRotation().getDegrees();
-          double omegaRps = Units.radiansToRotations(driveState.Speeds.omegaRadiansPerSecond);
-
-          if (getTVLeft()) {
-            LimelightHelpers.SetRobotOrientation("limelight-left", headingDeg, 0, 0, 0, 0, 0);
-            var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-left");
-            if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
-                addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
-            }
-            //Only use below if necessary (For rotation correction)
-            //getPigeon2().setYaw(llMeasurement.pose.getRotation().getDegrees());
-          }
-
-          SmartDashboard.putString("Limelight Swerve Pose",
-          getTVLeft() ? LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-left").pose.toString() : "No target");
-              SmartDashboard.putString("Swerve Robot Pose", getState().Pose.toString());
-              }
-
-      // -------------------------- SmartDashboard logging --------------------------
-      var array = new double[] {
-          getPose().getX(),
-          getPose().getY(),
-          getPose().getRotation().getRadians()
-      };
-      SmartDashboard.putNumberArray("MyPose", array);
-
-      // -------------------------- Operator perspective --------------------------
-      if (!m_hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
-          DriverStation.getAlliance().ifPresent(allianceColor -> {
-              setOperatorPerspectiveForward(
-                      allianceColor == Alliance.Red
-                              ? kRedAlliancePerspectiveRotation
-                              : kBlueAlliancePerspectiveRotation
-              );
-              m_hasAppliedOperatorPerspective = true;
-          });
-      }
-  }
-
     
         private void startSimThread() {
             m_lastSimTime = Utils.getCurrentTimeSeconds();
@@ -481,22 +397,23 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
           public Command driveToPose(Supplier<Pose2d> pose) {
             return AutoBuilder.pathfindToPose(pose.get(), K_CONSTRAINTS_Barging);
           }
+          /* 
           public Pose2d getNearestReefPoseLeft() {
             var currentX = getPose().getX();
             var currentY = getPose().getY();
             Pose2d[][] allPoses = new Pose2d[][] {
-              kAliBLUE18,
-              kAliBLUE19, 
-              kAliBLUE20,
-              kAliBLUE21,
-              kAliBLUE22,
-              kAliBLUE17,
-              kAliRED6,
-              kAliRED7,
-              kAliRED8,
-              kAliRED9,
-              kAliRED10,
-              kAliRED11
+              kAliBLUE0_1,
+              kAliBLUE2_3, 
+              kAliBLUE4_5,
+              kAliBLUE6_7,
+              kAliBLUE8_9,
+              kAliBLUE10_11,
+              kAliRED0_1,
+              kAliRED2_3,
+              kAliRED4_5,
+              kAliRED6_7,
+              kAliRED8_9,
+              kAliRED10_11
             };
             ArrayList<Double> distanceArray = new ArrayList<Double>();
             for (int i=0; i<allPoses.length; i++) {
@@ -518,27 +435,24 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             }
 
             Pose2d closest = allPoses[(int)index][0];
-            SmartDashboard.putString("Target Pose", "X:" + closest.getX() +
-            " Y:" + closest.getY() +
-           " R:" + closest.getRotation().getDegrees());
             return closest;
           }
           public Pose2d getNearestReefPoseRight() {
             var currentX = getPose().getX();
             var currentY = getPose().getY();
             Pose2d[][] allPoses = new Pose2d[][] {
-              kAliBLUE18,
-              kAliBLUE19, 
-              kAliBLUE20,
-              kAliBLUE21,
-              kAliBLUE22,
-              kAliBLUE17,
-              kAliRED6,
-              kAliRED7,
-              kAliRED8,
-              kAliRED9,
-              kAliRED10,
-              kAliRED11
+              kAliBLUE0_1,
+              kAliBLUE2_3, 
+              kAliBLUE4_5,
+              kAliBLUE6_7,
+              kAliBLUE8_9,
+              kAliBLUE10_11,
+              kAliRED0_1,
+              kAliRED2_3,
+              kAliRED4_5,
+              kAliRED6_7,
+              kAliRED8_9,
+              kAliRED10_11
             };
             ArrayList<Double> distanceArray = new ArrayList<Double>();
             for (int i=0; i<allPoses.length; i++) {
@@ -560,11 +474,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             }
 
             Pose2d closest = allPoses[(int)index][1];
-            SmartDashboard.putString("Target Pose", "X:" + closest.getX() +
-            " Y:" + closest.getY() +
-           " R:" + closest.getRotation().getDegrees());
             return closest;
           }
+          */
           public void resetGyro(double angle) {
             getPigeon2().setYaw(angle);
           }
@@ -618,7 +530,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
       }
       public Pose2d getAlignmentTarget(boolean left) {
         // return currentAlignmentSide[left ? 0 : 1];
-        return kAliBLUE17[0];
+        return kAliBLUE6_7[0];
       }
     //   public double getTZ() {
     //     return m_limelight.getEntry("ty").getDouble(0.0);
@@ -632,6 +544,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     //     // table.getEntry("RobotPose").setDoubleArray(poseArray);
     //     // SmartDashboard.putNumberArray("Raw Pose", result);
     //   }
+      public Pose2d getLeftLLPose() {
+        var array = m_limelightLeft.getEntry("botpose_wpiblue").getDoubleArray(new double[]{0,0,0,0,0,0});
+        double[] result = {array[0], array[1], array[5]};
+        Pose2d pose = new Pose2d(result[0], result[1], new Rotation2d(result[2]));
+        // return pose;
+        return pose;
+      }
       private void configureAutoBuilder() {
         try {
             var config = RobotConfig.fromGUISettings();
@@ -727,10 +646,5 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
       else {
         isSkidding = false;
       }
-    }
-    public void resetRotation(Double newAngle) { 
-      //Reset the pose estimator to keep everything in sync 
-      resetGyro(newAngle); 
-      resetPose(new Pose2d(getPose().getTranslation(), Rotation2d.fromDegrees(newAngle))); 
     }
 }

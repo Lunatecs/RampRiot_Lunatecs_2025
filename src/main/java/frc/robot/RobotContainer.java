@@ -9,6 +9,7 @@ import static edu.wpi.first.units.Units.*;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.littletonrobotics.junction.Logger;
 
@@ -43,6 +44,9 @@ import frc.robot.commands.GetCoralFromGroundSequentialCommand;
 import frc.robot.commands.GetCoralSubstationCommand;
 import frc.robot.commands.ManualClimbCommand;
 import frc.robot.commands.NewAlageDown;
+import frc.robot.commands.TrackToLeftTagCommand;
+import frc.robot.commands.TrackToRightTagCommand;
+import frc.robot.field.Field;
 import frc.robot.AprilTagPositions;
 import frc.robot.commands.AUTOAlgaeFromReef_PoolsideDelight;
 import frc.robot.commands.AlgaeFromGroundPivotCommand;
@@ -97,6 +101,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 public class RobotContainer {
     
+    
 
 
 
@@ -130,6 +135,7 @@ public class RobotContainer {
     private final CarriageSubSystem coralCarriage = new CarriageSubSystem();
     private final CoralOutakeSubSystem coralOutake = new CoralOutakeSubSystem();
     private final ElevatorSubSystem elevator = new ElevatorSubSystem();
+    private final Field field = new Field(drivetrain);
 
     //private final CoralHopperSubSystem hopper = new CoralHopperSubSystem();
     //We are not using the hopper subsystem
@@ -211,35 +217,11 @@ public class RobotContainer {
         //driver.R1().whileTrue((new TrackToTagCommand(drivetrain, limelight, blueMap, redMap)));
 
         driver.R1().whileTrue(
-            new SequentialCommandGroup(
-            new InstantCommand(() -> drivetrain.resetPoseBasedOnLL()),
-            new WaitCommand(0.25),
-            defer(
-                () -> AutoBuilder.pathfindToPose(
-                    drivetrain.getNearestReefPoseLeft(),
-                    new PathConstraints(2, 2, 
-                        540, 
-                        720)
-                ),
-                    Set.of()
-                )
-            )
+            new TrackToLeftTagCommand(drivetrain, field)
         );
 
         driver.L1().whileTrue(
-            new SequentialCommandGroup(
-            new InstantCommand(() -> drivetrain.resetPoseBasedOnLL()),
-            new WaitCommand(0.25),
-            defer(
-                () -> AutoBuilder.pathfindToPose(
-                    drivetrain.getNearestReefPoseRight(),
-                    new PathConstraints(2, 2, 
-                        540, 
-                        720)
-                ),
-                    Set.of()
-                )
-            )
+            new TrackToRightTagCommand(drivetrain, field)
         );
 
         
@@ -259,11 +241,11 @@ public class RobotContainer {
 
         // Field Centric Heading Reset
         //driver.circle().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
-        //driver.circle().onTrue(drivetrain.runOnce(() -> drivetrain.resetRotation(Rotation2d.fromDegrees(0))));
+        driver.circle().onTrue(drivetrain.runOnce(() -> drivetrain.resetRotation(Rotation2d.fromDegrees(0))));
 
 
         //New Reset Rotation Method, Resets both pidgeon and pose
-        driver.circle().onTrue(drivetrain.runOnce(() -> drivetrain.resetRotation(0.0)));
+        //driver.circle().onTrue(drivetrain.runOnce(() -> drivetrain.resetRotation(0.0)));
 
         //driver.L2().whileTrue(new RunCommand(()-> {liberator.setSpeed(1); (coralOutake.setSpeed(1);}, liberator, coralOutake))
                     //.onFalse(new InstantCommand(()-> {liberator.setSpeed(0); coralOutake.setSpeed(0);}, liberator, coralOutake));

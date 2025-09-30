@@ -4,6 +4,8 @@
 
 package frc.robot.field;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -14,11 +16,116 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.CommandSwerveDrivetrain;
 
 /** Add your docs here. */
 public class Field {
+   CommandSwerveDrivetrain swerve;
+   public Field(CommandSwerveDrivetrain swerve) {
+      this.swerve = swerve;
+   }
 
-    private static HashMap<Integer,ReefPose> blueNear = new HashMap<>();
+   public class NormalAlignmentPoses {
+      public static final Pose2d[] kAliRED6 = new Pose2d[]{new Pose2d(13.827, 3.0259, Rotation2d.fromDegrees(120)), new Pose2d(13.541, 2.8608, Rotation2d.fromDegrees(120))};
+      public static final Pose2d[] kAliRED7 = new Pose2d[]{new Pose2d(14.3096, 4.191, Rotation2d.fromDegrees(180)), new Pose2d(14.3096, 3.8608, Rotation2d.fromDegrees(180))};
+      public static final Pose2d[] kAliRED8 = new Pose2d[]{new Pose2d(13.541, 5.191, Rotation2d.fromDegrees(-120)), new Pose2d(13.827, 5.0259, Rotation2d.fromDegrees(-120))};
+      public static final Pose2d[] kAliRED9 = new Pose2d[]{new Pose2d(12.2908, 5.0259, Rotation2d.fromDegrees(-60)), new Pose2d(12.5768, 5.191, Rotation2d.fromDegrees(-60))};
+      public static final Pose2d[] kAliRED10 = new Pose2d[]{new Pose2d(11.8082, 3.8608, Rotation2d.fromDegrees(0)), new Pose2d(11.8082, 4.191, Rotation2d.fromDegrees(0))};
+      public static final Pose2d[] kAliRED11 = new Pose2d[]{new Pose2d(12.5768, 2.8608, Rotation2d.fromDegrees(60)), new Pose2d(12.2908, 3.0259, Rotation2d.fromDegrees(60))};
+  
+      public static final Pose2d[] kAliBLUE17 = new Pose2d[]{new Pose2d(4.007, 2.86, Rotation2d.fromDegrees(60)), new Pose2d(3.721, 3.026, Rotation2d.fromDegrees(60)), };
+      public static final Pose2d[] kAliBLUE18 = new Pose2d[]{new Pose2d(3.239, 3.86, Rotation2d.fromDegrees(0)), new Pose2d(3.239, 4.191, Rotation2d.fromDegrees(0))};
+      public static final Pose2d[] kAliBLUE19 = new Pose2d[]{new Pose2d(3.721, 5.026, Rotation2d.fromDegrees(-60)), new Pose2d(4.007, 5.19, Rotation2d.fromDegrees(-60))};
+      public static final Pose2d[] kAliBLUE20 = new Pose2d[]{new Pose2d(4.971, 5.19, Rotation2d.fromDegrees(-120)), new Pose2d(5.257, 5.026, Rotation2d.fromDegrees(-120))};
+      public static final Pose2d[] kAliBLUE21 = new Pose2d[]{new Pose2d(5.74, 4.191, Rotation2d.fromDegrees(180)), new Pose2d(5.73, 3.86, Rotation2d.fromDegrees(180))};
+      public static final Pose2d[] kAliBLUE22 = new Pose2d[]{new Pose2d(5.257, 3.026, Rotation2d.fromDegrees(120)), new Pose2d(4.971, 2.86, Rotation2d.fromDegrees(120))};
+    }
+
+
+
+
+    public Pose2d getNearestReefPoseRight() {
+      var currentX = swerve.getPose().getX();
+      var currentY = swerve.getPose().getY();
+      Pose2d[][] allPoses = new Pose2d[][] {
+        NormalAlignmentPoses.kAliBLUE17,
+        NormalAlignmentPoses.kAliBLUE18, 
+        NormalAlignmentPoses.kAliBLUE19,
+        NormalAlignmentPoses.kAliBLUE20,
+        NormalAlignmentPoses.kAliBLUE21,
+        NormalAlignmentPoses.kAliBLUE22,
+        NormalAlignmentPoses.kAliRED6,
+        NormalAlignmentPoses.kAliRED7,
+        NormalAlignmentPoses.kAliRED8,
+        NormalAlignmentPoses.kAliRED9,
+        NormalAlignmentPoses.kAliRED10,
+        NormalAlignmentPoses.kAliRED11
+      };
+      ArrayList<Double> distanceArray = new ArrayList<Double>();
+            for (int i=0; i<allPoses.length; i++) {
+              distanceArray.add(
+                Math.sqrt(
+                  Math.pow((currentX - allPoses[i][0].getX()),2)
+                  +
+                  Math.pow((currentY - allPoses[i][0].getY()),2)
+                )
+              );
+            }
+            ArrayList<Double> sortedArray = new ArrayList<>(distanceArray);
+            Collections.sort(sortedArray);
+            double index = 0;
+            for (int i=0; i<sortedArray.size(); i++) {
+              if (distanceArray.get(i) == sortedArray.get(0)) {
+                index = i;
+              }
+            }
+
+            Pose2d closest = allPoses[(int)index][0];
+            return closest;
+         }
+
+         public Pose2d getNearestReefPoseLeft() {
+            var currentX = swerve.getPose().getX();
+            var currentY = swerve.getPose().getY();
+            Pose2d[][] allPoses = new Pose2d[][] {
+               NormalAlignmentPoses.kAliBLUE17,
+               NormalAlignmentPoses.kAliBLUE18, 
+               NormalAlignmentPoses.kAliBLUE19,
+               NormalAlignmentPoses.kAliBLUE20,
+               NormalAlignmentPoses.kAliBLUE21,
+               NormalAlignmentPoses.kAliBLUE22,
+               NormalAlignmentPoses.kAliRED6,
+               NormalAlignmentPoses.kAliRED7,
+               NormalAlignmentPoses.kAliRED8,
+               NormalAlignmentPoses.kAliRED9,
+               NormalAlignmentPoses.kAliRED10,
+               NormalAlignmentPoses.kAliRED11
+            };
+            ArrayList<Double> distanceArray = new ArrayList<Double>();
+            for (int i=0; i<allPoses.length; i++) {
+              distanceArray.add(
+                Math.sqrt(
+                  Math.pow((currentX - allPoses[i][0].getX()),2)
+                  +
+                  Math.pow((currentY - allPoses[i][0].getY()),2)
+                )
+              );
+            }
+            ArrayList<Double> sortedArray = new ArrayList<>(distanceArray);
+            Collections.sort(sortedArray);
+            double index = 0;
+            for (int i=0; i<sortedArray.size(); i++) {
+              if (distanceArray.get(i) == sortedArray.get(0)) {
+                index = i;
+              }
+            }
+
+            Pose2d closest = allPoses[(int)index][1];
+            return closest;
+          }
+
+    /*private static HashMap<Integer,ReefPose> blueNear = new HashMap<>();
     private static HashMap<Integer,ReefPose> blueNearNew = new HashMap<>();
     private static HashMap<Integer, ReefPose> blueNearNewNew = new HashMap<>();
     private static HashMap<Integer, ReefPose> blueNearFinal = new HashMap<>();
@@ -343,5 +450,6 @@ public class Field {
         double lineLength = Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
         return lineLength;
     }
+        */ 
 
 }
