@@ -37,7 +37,7 @@ import frc.robot.subsystems.CommandSwerveDrivetrain;
  * the TimedRobot documentation. If you change the name of this class or the package after creating
  * this project, you must also update the Main.java file in the project.
  */
-public class Robot extends TimedRobot  {
+public class Robot extends LoggedRobot  {
   private Command m_autonomousCommand;
   private Rotation2d autonEndingAngle = new Rotation2d();
   private final CommandSwerveDrivetrain swerve;

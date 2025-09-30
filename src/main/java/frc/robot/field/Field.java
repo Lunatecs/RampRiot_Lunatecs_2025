@@ -42,25 +42,41 @@ public class Field {
       public static final Pose2d[] kAliBLUE22 = new Pose2d[]{new Pose2d(5.257, 3.026, Rotation2d.fromDegrees(120)), new Pose2d(4.971, 2.86, Rotation2d.fromDegrees(120))};
     }
 
+    public class RaritanAlignmentPoses { //Adi Method
+      public static final Pose2d[] kAliRED6 = new Pose2d[]{new Pose2d(13.5032, 3.0259, Rotation2d.fromDegrees(120)), new Pose2d(13.2172, 2.8608, Rotation2d.fromDegrees(120))};
+      public static final Pose2d[] kAliRED7 = new Pose2d[]{new Pose2d(13.9858, 4.191, Rotation2d.fromDegrees(180)), new Pose2d(13.9858, 3.8608, Rotation2d.fromDegrees(180))};
+      public static final Pose2d[] kAliRED8 = new Pose2d[]{new Pose2d(13.2172, 5.191, Rotation2d.fromDegrees(-120)), new Pose2d(13.5032, 5.0259, Rotation2d.fromDegrees(-120))};
+      public static final Pose2d[] kAliRED9 = new Pose2d[]{new Pose2d(11.967, 5.0259, Rotation2d.fromDegrees(-60)), new Pose2d(12.253, 5.191, Rotation2d.fromDegrees(-60))};
+      public static final Pose2d[] kAliRED10 = new Pose2d[]{new Pose2d(11.4844, 3.8608, Rotation2d.fromDegrees(0)), new Pose2d(11.4844, 4.191, Rotation2d.fromDegrees(0))};
+      public static final Pose2d[] kAliRED11 = new Pose2d[]{new Pose2d(12.253, 2.8608, Rotation2d.fromDegrees(60)), new Pose2d(11.967, 3.0259, Rotation2d.fromDegrees(60))};
+  
+      public static final Pose2d[] kAliBLUE17 = new Pose2d[]{new Pose2d(4.3308, 2.86, Rotation2d.fromDegrees(60)), new Pose2d(4.0448, 3.026, Rotation2d.fromDegrees(60)), };
+      public static final Pose2d[] kAliBLUE18 = new Pose2d[]{new Pose2d(3.5628, 3.86, Rotation2d.fromDegrees(0)), new Pose2d(3.5628, 4.191, Rotation2d.fromDegrees(0))};
+      public static final Pose2d[] kAliBLUE19 = new Pose2d[]{new Pose2d(4.0448, 5.026, Rotation2d.fromDegrees(-60)), new Pose2d(4.3308, 5.19, Rotation2d.fromDegrees(-60))};
+      public static final Pose2d[] kAliBLUE20 = new Pose2d[]{new Pose2d(5.2948, 5.19, Rotation2d.fromDegrees(-120)), new Pose2d(5.5808, 5.026, Rotation2d.fromDegrees(-120))};
+      public static final Pose2d[] kAliBLUE21 = new Pose2d[]{new Pose2d(6.0638, 4.191, Rotation2d.fromDegrees(180)), new Pose2d(6.0538, 3.86, Rotation2d.fromDegrees(180))};
+      public static final Pose2d[] kAliBLUE22 = new Pose2d[]{new Pose2d(5.5808, 3.026, Rotation2d.fromDegrees(120)), new Pose2d(5.2948, 2.86, Rotation2d.fromDegrees(120))};
+    }
 
 
 
-    public Pose2d getNearestReefPoseRight() {
+
+    public Pose2d getNearestReefPoseLeft() {
       var currentX = swerve.getPose().getX();
       var currentY = swerve.getPose().getY();
       Pose2d[][] allPoses = new Pose2d[][] {
-        NormalAlignmentPoses.kAliBLUE17,
-        NormalAlignmentPoses.kAliBLUE18, 
-        NormalAlignmentPoses.kAliBLUE19,
-        NormalAlignmentPoses.kAliBLUE20,
-        NormalAlignmentPoses.kAliBLUE21,
-        NormalAlignmentPoses.kAliBLUE22,
-        NormalAlignmentPoses.kAliRED6,
-        NormalAlignmentPoses.kAliRED7,
-        NormalAlignmentPoses.kAliRED8,
-        NormalAlignmentPoses.kAliRED9,
-        NormalAlignmentPoses.kAliRED10,
-        NormalAlignmentPoses.kAliRED11
+        RaritanAlignmentPoses.kAliBLUE17,
+        RaritanAlignmentPoses.kAliBLUE18, 
+        RaritanAlignmentPoses.kAliBLUE19,
+        RaritanAlignmentPoses.kAliBLUE20,
+        RaritanAlignmentPoses.kAliBLUE21,
+        RaritanAlignmentPoses.kAliBLUE22,
+        RaritanAlignmentPoses.kAliRED6,
+        RaritanAlignmentPoses.kAliRED7,
+        RaritanAlignmentPoses.kAliRED8,
+        RaritanAlignmentPoses.kAliRED9,
+        RaritanAlignmentPoses.kAliRED10,
+        RaritanAlignmentPoses.kAliRED11
       };
       ArrayList<Double> distanceArray = new ArrayList<Double>();
             for (int i=0; i<allPoses.length; i++) {
@@ -85,22 +101,22 @@ public class Field {
             return closest;
          }
 
-         public Pose2d getNearestReefPoseLeft() {
+         public Pose2d getNearestReefPoseRight() {
             var currentX = swerve.getPose().getX();
             var currentY = swerve.getPose().getY();
             Pose2d[][] allPoses = new Pose2d[][] {
-               NormalAlignmentPoses.kAliBLUE17,
-               NormalAlignmentPoses.kAliBLUE18, 
-               NormalAlignmentPoses.kAliBLUE19,
-               NormalAlignmentPoses.kAliBLUE20,
-               NormalAlignmentPoses.kAliBLUE21,
-               NormalAlignmentPoses.kAliBLUE22,
-               NormalAlignmentPoses.kAliRED6,
-               NormalAlignmentPoses.kAliRED7,
-               NormalAlignmentPoses.kAliRED8,
-               NormalAlignmentPoses.kAliRED9,
-               NormalAlignmentPoses.kAliRED10,
-               NormalAlignmentPoses.kAliRED11
+               RaritanAlignmentPoses.kAliBLUE17,
+               RaritanAlignmentPoses.kAliBLUE18, 
+               RaritanAlignmentPoses.kAliBLUE19,
+               RaritanAlignmentPoses.kAliBLUE20,
+               RaritanAlignmentPoses.kAliBLUE21,
+               RaritanAlignmentPoses.kAliBLUE22,
+               RaritanAlignmentPoses.kAliRED6,
+               RaritanAlignmentPoses.kAliRED7,
+               RaritanAlignmentPoses.kAliRED8,
+               RaritanAlignmentPoses.kAliRED9,
+               RaritanAlignmentPoses.kAliRED10,
+               RaritanAlignmentPoses.kAliRED11
             };
             ArrayList<Double> distanceArray = new ArrayList<Double>();
             for (int i=0; i<allPoses.length; i++) {

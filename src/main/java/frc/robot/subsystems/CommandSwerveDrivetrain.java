@@ -330,7 +330,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             double headingDeg = driveState.Pose.getRotation().getDegrees();
             double omegaRps = Units.radiansToRotations(driveState.Speeds.omegaRadiansPerSecond);
       
-            LimelightHelpers.SetRobotOrientation("limelight-left", getPigeon2().getYaw().getValueAsDouble(), 0, 0, 0, 0, 0);
+            LimelightHelpers.SetRobotOrientation("limelight-left", headingDeg, 0, 0, 0, 0, 0);
             var llMeasurement = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-left");
             if (llMeasurement != null && llMeasurement.tagCount > 0 && Math.abs(omegaRps) < 2.0) {
               pose.addVisionMeasurement(llMeasurement.pose, llMeasurement.timestampSeconds);
@@ -364,6 +364,14 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                 });
             }
             SmartDashboard.putString("Robot Pose", pose.toString());
+
+            SmartDashboard.putString("Limelight Swerve Pose",
+          getTVLeft() ? LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2("limelight-left").pose.toString() : "No target");
+              SmartDashboard.putString("Swerve Robot Pose", getState().Pose.toString());
+
+              SmartDashboard.putString("Robot Pose Total", "X:" + getPose().getX() +
+            " Y:" + getPose().getY() +
+           " R:" + getPose().getRotation().getDegrees());
         }
     
         private void startSimThread() {
