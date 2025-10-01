@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RoboconLeftCurvedP1"
+            "pathName": "Riot 4 Piece P1"
           }
         },
         {
@@ -19,7 +19,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RoboconLeftCurvedP2-3"
+            "pathName": "Riot 4 Piece P2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 4 Piece P3"
           }
         },
         {
@@ -31,7 +37,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RoboconLeftCurvedP4-5"
+            "pathName": "Riot 4 Piece P4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 4 Piece P5"
           }
         },
         {
@@ -43,7 +55,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RoboconLeftCurvedP6-7"
+            "pathName": "Riot 4 Piece P6"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 4 Piece P7"
           }
         },
         {

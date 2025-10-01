@@ -1,0 +1,113 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.660673463945173,
+        "y": 7.353951272337651
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.0083250234439554,
+        "y": 6.613441531512255
+      },
+      "isLocked": false,
+      "linkedName": "Station Pickup - Riot Left 4 Piece"
+    },
+    {
+      "anchor": {
+        "x": 3.1971999508993965,
+        "y": 4.192491783414568
+      },
+      "prevControl": {
+        "x": 2.703699268155021,
+        "y": 5.173661901641625
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.11309184725322416,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Station Pick Up Command",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Station Pick Up Command"
+        }
+      }
+    },
+    {
+      "name": "L4 Check",
+      "waypointRelativePos": 0.5389694940476187,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4 Check"
+        }
+      }
+    },
+    {
+      "name": "L4 Check",
+      "waypointRelativePos": 0.7808847578745041,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4 Check"
+        }
+      }
+    },
+    {
+      "name": "L4",
+      "waypointRelativePos": 0.9511402271412038,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "Ramp Riot 4 Piece Left",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -53.54942749777303
+  },
+  "useDefaultConstraints": true
+}

@@ -1,0 +1,77 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 3.982190021853226,
+        "y": 5.2045239589724615
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 3.409146879990507,
+        "y": 5.743061743520538
+      },
+      "isLocked": false,
+      "linkedName": "End P3- Riot Left 4 Piece"
+    },
+    {
+      "anchor": {
+        "x": 1.660673463945173,
+        "y": 7.353951272337651
+      },
+      "prevControl": {
+        "x": 1.9771125255784145,
+        "y": 7.060455016577358
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Station Pickup - Riot Left 4 Piece"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Elevator Down",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Elevator Down"
+        }
+      }
+    },
+    {
+      "name": "Station Pick Up Command",
+      "waypointRelativePos": 0.47513027292080023,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Station Pick Up Command"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -53.54942749777303
+  },
+  "reversed": false,
+  "folder": "Ramp Riot 4 Piece Left",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -59.99999999999999
+  },
+  "useDefaultConstraints": true
+}
