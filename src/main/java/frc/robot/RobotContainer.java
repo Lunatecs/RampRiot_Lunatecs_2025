@@ -185,13 +185,10 @@ public class RobotContainer {
         var alliance = DriverStation.getAlliance();
 
         if (alliance.isPresent()) {
-            drivetrain.getPigeon2().setYaw(
-                alliance.get() == Alliance.Blue ? 0 : 180
+            drivetrain.resetRotation(Rotation2d.fromDegrees(
+                alliance.get() == Alliance.Blue ? 180 : 0)
             );
-        } else {
-        // Default to Blue or some safe value in sim
-            drivetrain.getPigeon2().setYaw(0);
-}
+        } 
 
         configureBindings();
     }

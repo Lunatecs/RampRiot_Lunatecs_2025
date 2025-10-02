@@ -125,12 +125,17 @@ public class Robot extends LoggedRobot  {
 
   @Override
   public void teleopInit() {
-    
+    var alliance = DriverStation.getAlliance();
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    
+    if (alliance.isPresent()) {
+      swerve.resetGyro(
+          alliance.get() == Alliance.Blue ? 0 : 180)
+      ;
+  } 
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
