@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.16,
-        "y": 5.4
+        "x": 7.809333392551967,
+        "y": 5.067358657291957
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.091942280109093,
-        "y": 5.458645259804216
+        "x": 6.741275672661059,
+        "y": 5.126003917096173
       },
       "isLocked": false,
       "linkedName": "4 Piece Start Point"
