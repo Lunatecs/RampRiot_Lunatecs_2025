@@ -1,0 +1,43 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 2 Piece Algae P1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 2 Piece Algae P2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 2 Piece Algae P3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 2 Piece Algae P4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Riot 2 Piece Algae P5"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}

@@ -1,0 +1,66 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.646727214540753,
+        "y": 5.034305504390171
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.6960168926928505,
+        "y": 5.081022385440075
+      },
+      "isLocked": false,
+      "linkedName": "Algae Scoring Position - Riot Algae Auto"
+    },
+    {
+      "anchor": {
+        "x": 5.134322756287017,
+        "y": 5.137185145161121
+      },
+      "prevControl": {
+        "x": 5.866909801482515,
+        "y": 5.100189193515605
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "End P4 - Riot Algae Auto"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Elevator Down",
+      "waypointRelativePos": 0.02859351748511904,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Elevator Down"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -120.54782041372441
+  },
+  "reversed": false,
+  "folder": "Riot 2 Piece Algae",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}
