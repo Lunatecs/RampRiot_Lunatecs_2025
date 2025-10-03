@@ -33,8 +33,8 @@ public class TrackToLeftTagCommand extends SequentialCommandGroup {
                 () -> AutoBuilder.pathfindToPose(
                     field.getNearestReefPoseLeft(),
                     new PathConstraints(2, 2, 
-                        540, 
-                        720)
+                    Math.toRadians(540), 
+                    Math.toRadians(720))
                 ),
                     Set.of()
                 )

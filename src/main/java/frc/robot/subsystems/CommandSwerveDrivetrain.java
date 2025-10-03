@@ -518,6 +518,31 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
           public double getTIDLeft() {
             return m_limelightLeft.getEntry("tid").getDouble(0);
           }
+
+
+          public Pose2d getCagePose(String cage, Alliance alliance) {
+            if (alliance == Alliance.Blue) {
+              switch (cage) {
+                case "right": return new Pose2d(8.143, 5.078, Rotation2d.fromDegrees(180));
+                case "center": return new Pose2d(8.143, 6.175, Rotation2d.fromDegrees(180));
+                case "left": return new Pose2d(8.143, 7.265, Rotation2d.fromDegrees(180));
+              }
+            } else if (alliance == Alliance.Red) {
+              switch (cage) {
+                case "right": return new Pose2d(9.372, 3, Rotation2d.fromDegrees(0));
+                case "center": return new Pose2d(9.372, 1.909, Rotation2d.fromDegrees(0));
+                case "left": return new Pose2d(9.372, 0.812, Rotation2d.fromDegrees(0));
+              }
+            }
+            return new Pose2d(); // fallback
+          }
+
+
+
+
+
+
+
           public Command setFollowingPath() {
             return new InstantCommand(() -> otfFollowing = true);
       }

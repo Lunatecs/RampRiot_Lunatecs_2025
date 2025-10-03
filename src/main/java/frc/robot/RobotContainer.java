@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -306,9 +307,38 @@ public class RobotContainer {
 
 
         //TRACK TO CAGE CONTROLS
+        driver.povUp().whileTrue(
+            Commands.defer(
+            () -> AutoBuilder.pathfindToPose(
+            drivetrain.getCagePose("center", DriverStation.getAlliance().get()),
+            new PathConstraints(2, 2, Math.toRadians(540), Math.toRadians(720))
+            ),
+        Set.of(drivetrain) // requirements
+        )
+        );
+        driver.povLeft().whileTrue(
+            Commands.defer(
+            () -> AutoBuilder.pathfindToPose(
+            drivetrain.getCagePose("left", DriverStation.getAlliance().get()),
+            new PathConstraints(2, 2, Math.toRadians(540), Math.toRadians(720))
+            ),
+        Set.of(drivetrain) // requirements
+        )
+        );
+        driver.povRight().whileTrue(
+            Commands.defer(
+            () -> AutoBuilder.pathfindToPose(
+            drivetrain.getCagePose("right", DriverStation.getAlliance().get()),
+            new PathConstraints(2, 2, Math.toRadians(540), Math.toRadians(720))
+            ),
+        Set.of(drivetrain) // requirements
+        )
+        );
+        
+
+
         //driver.povUp().whileTrue(new TrackToCageCommand(drivetrain, "center", DriverStation.getAlliance().get()));
         //driver.povLeft().whileTrue(new TrackToCageCommand(drivetrain, "left", DriverStation.getAlliance().get()));
-
         //driver.povRight().whileTrue(new TrackToCageCommand(drivetrain, "right", DriverStation.getAlliance().get()));
 
         

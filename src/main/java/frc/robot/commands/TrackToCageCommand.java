@@ -34,6 +34,7 @@ public class TrackToCageCommand extends Command {
   PathPlannerPath path;
   List<Waypoint> waypoints;
   PathConstraints constraints;
+  private Command pathCommand;
 
   public TrackToCageCommand(CommandSwerveDrivetrain drivetrain, String cage, Alliance alliance) {
     this.alliance = alliance;
@@ -46,7 +47,7 @@ public class TrackToCageCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (alliance == Alliance.Blue){
+    /*if (alliance == Alliance.Blue){
       if (cage.equals("right")){
         goalPose =  new Pose2d(8.143, 5.078, Rotation2d.fromDegrees(180));
       }
@@ -68,27 +69,53 @@ public class TrackToCageCommand extends Command {
         goalPose = new Pose2d(9.372, 0.812, Rotation2d.fromDegrees(0));
       }
     }
+  */
+  if (alliance == Alliance.Blue) {
+    switch (cage) {
+      case "right": goalPose = new Pose2d(8.143, 5.078, Rotation2d.fromDegrees(180)); break;
+      case "center": goalPose = new Pose2d(8.143, 6.175, Rotation2d.fromDegrees(180)); break;
+      case "left": goalPose = new Pose2d(8.143, 7.265, Rotation2d.fromDegrees(180)); break;
+    }
+  } else if (alliance == Alliance.Red) {
+    switch (cage) {
+      case "right": goalPose = new Pose2d(9.372, 3, Rotation2d.fromDegrees(0)); break;
+      case "center": goalPose = new Pose2d(9.372, 1.909, Rotation2d.fromDegrees(0)); break;
+      case "left": goalPose = new Pose2d(9.372, 0.812, Rotation2d.fromDegrees(0)); break;
+    }
   }
+
+  SmartDashboard.putString("Selected Cage Alliance", alliance.toString());
+  SmartDashboard.putString("Selected Cage Position", cage);
+
+  // Build the actual path command
+  pathCommand = AutoBuilder.pathfindToPose(
+      goalPose,
+      new PathConstraints(2, 2, Math.toRadians(540), Math.toRadians(720))
+  );
+  pathCommand.initialize();
+}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-
-
-                SmartDashboard.putString("Selected Cage Alliance", alliance.toString());
-                SmartDashboard.putString("Selected Cage Position", cage.toString());
+    if (pathCommand != null) {
+      pathCommand.execute();
+    }
 
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    if (pathCommand != null) {
+      pathCommand.end(interrupted);
+    }
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return isFinished();
+    return pathCommand != null && pathCommand.isFinished();
    
   }
 }
