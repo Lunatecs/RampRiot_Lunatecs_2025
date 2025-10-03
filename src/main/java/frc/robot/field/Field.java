@@ -65,18 +65,18 @@ public class Field {
       var currentX = swerve.getPose().getX();
       var currentY = swerve.getPose().getY();
       Pose2d[][] allPoses = new Pose2d[][] {
-        RaritanAlignmentPoses.kAliBLUE17,
-        RaritanAlignmentPoses.kAliBLUE18, 
-        RaritanAlignmentPoses.kAliBLUE19,
-        RaritanAlignmentPoses.kAliBLUE20,
-        RaritanAlignmentPoses.kAliBLUE21,
-        RaritanAlignmentPoses.kAliBLUE22,
-        RaritanAlignmentPoses.kAliRED6,
-        RaritanAlignmentPoses.kAliRED7,
-        RaritanAlignmentPoses.kAliRED8,
-        RaritanAlignmentPoses.kAliRED9,
-        RaritanAlignmentPoses.kAliRED10,
-        RaritanAlignmentPoses.kAliRED11
+        NormalAlignmentPoses.kAliBLUE17,
+        NormalAlignmentPoses.kAliBLUE18, 
+        NormalAlignmentPoses.kAliBLUE19,
+        NormalAlignmentPoses.kAliBLUE20,
+        NormalAlignmentPoses.kAliBLUE21,
+        NormalAlignmentPoses.kAliBLUE22,
+        NormalAlignmentPoses.kAliRED6,
+        NormalAlignmentPoses.kAliRED7,
+        NormalAlignmentPoses.kAliRED8,
+        NormalAlignmentPoses.kAliRED9,
+        NormalAlignmentPoses.kAliRED10,
+        NormalAlignmentPoses.kAliRED11
       };
       ArrayList<Double> distanceArray = new ArrayList<Double>();
             for (int i=0; i<allPoses.length; i++) {
@@ -105,18 +105,18 @@ public class Field {
             var currentX = swerve.getPose().getX();
             var currentY = swerve.getPose().getY();
             Pose2d[][] allPoses = new Pose2d[][] {
-               RaritanAlignmentPoses.kAliBLUE17,
-               RaritanAlignmentPoses.kAliBLUE18, 
-               RaritanAlignmentPoses.kAliBLUE19,
-               RaritanAlignmentPoses.kAliBLUE20,
-               RaritanAlignmentPoses.kAliBLUE21,
-               RaritanAlignmentPoses.kAliBLUE22,
-               RaritanAlignmentPoses.kAliRED6,
-               RaritanAlignmentPoses.kAliRED7,
-               RaritanAlignmentPoses.kAliRED8,
-               RaritanAlignmentPoses.kAliRED9,
-               RaritanAlignmentPoses.kAliRED10,
-               RaritanAlignmentPoses.kAliRED11
+               NormalAlignmentPoses.kAliBLUE17,
+               NormalAlignmentPoses.kAliBLUE18, 
+               NormalAlignmentPoses.kAliBLUE19,
+               NormalAlignmentPoses.kAliBLUE20,
+               NormalAlignmentPoses.kAliBLUE21,
+               NormalAlignmentPoses.kAliBLUE22,
+               NormalAlignmentPoses.kAliRED6,
+               NormalAlignmentPoses.kAliRED7,
+               NormalAlignmentPoses.kAliRED8,
+               NormalAlignmentPoses.kAliRED9,
+               NormalAlignmentPoses.kAliRED10,
+               NormalAlignmentPoses.kAliRED11
             };
             ArrayList<Double> distanceArray = new ArrayList<Double>();
             for (int i=0; i<allPoses.length; i++) {

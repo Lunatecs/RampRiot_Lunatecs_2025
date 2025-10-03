@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.809333392551967,
-        "y": 5.067358657291957
+        "x": 7.145,
+        "y": 5.4
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.105316820271436,
-        "y": 5.006976295897621
+        "x": 6.021788194444444,
+        "y": 5.548350694444444
       },
       "isLocked": false,
       "linkedName": "4 Piece Start Point"
@@ -68,7 +68,7 @@
     "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": "Ramp Riot 4 Piece Left",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 179.57242749316657

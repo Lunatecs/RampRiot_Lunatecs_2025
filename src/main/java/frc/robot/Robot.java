@@ -108,6 +108,16 @@ public class Robot extends LoggedRobot  {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     swerve.resetPoseBasedOnLL();
+    var alliance = DriverStation.getAlliance();
+    // This makes sure that the autonomous stops running when
+    // teleop starts running. If you want the autonomous to
+    // continue until interrupted by another command, remove
+    // this line or comment it out.
+    if (alliance.isPresent()) {
+      swerve.resetGyro(
+          alliance.get() == Alliance.Blue ? 180 : 0)
+      ;
+  } 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
@@ -125,16 +135,6 @@ public class Robot extends LoggedRobot  {
 
   @Override
   public void teleopInit() {
-    var alliance = DriverStation.getAlliance();
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (alliance.isPresent()) {
-      swerve.resetGyro(
-          alliance.get() == Alliance.Blue ? 0 : 180)
-      ;
-  } 
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();

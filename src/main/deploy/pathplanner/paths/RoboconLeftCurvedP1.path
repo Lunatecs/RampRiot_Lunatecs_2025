@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.809333392551967,
-        "y": 5.067358657291957
+        "x": 7.145,
+        "y": 5.4
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.85408485361026,
-        "y": 5.164423157916928
+        "x": 6.189751461058293,
+        "y": 5.497064500624971
       },
       "isLocked": false,
       "linkedName": "4 Piece Start Point"
@@ -68,7 +68,7 @@
     "rotation": -119.51149855709028
   },
   "reversed": false,
-  "folder": "Raritan Left Side 4 Piece Curved",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0,
     "rotation": 179.57242749316657

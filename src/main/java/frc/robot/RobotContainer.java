@@ -44,6 +44,8 @@ import frc.robot.commands.GetCoralFromGroundSequentialCommand;
 import frc.robot.commands.GetCoralSubstationCommand;
 import frc.robot.commands.ManualClimbCommand;
 import frc.robot.commands.NewAlageDown;
+import frc.robot.commands.SetClimberServoCommandGroup;
+import frc.robot.commands.TrackToCageCommand;
 import frc.robot.commands.TrackToLeftTagCommand;
 import frc.robot.commands.TrackToRightTagCommand;
 import frc.robot.field.Field;
@@ -290,16 +292,26 @@ public class RobotContainer {
         //UNTESTED COMMANDS:
         operator.touchpad().and(operator.options()).onTrue(new ClimberReleaseCommand(chuteServo, whaleServo));
         //driver.povUp().onTrue(new ClimberSetCommand(chuteServo, whaleServo));
-        driver.povUp().onTrue(new InstantCommand(()-> {whaleServo.setTail();}));  //seems to activate chute UPDATE: FIXED by changing the pin slots in the code, because they were wrong.
-        driver.options().onTrue(new InstantCommand(() -> {chuteServo.setChute();})); // seems to activate whale tail UPDATE: Above.
+        //driver.povUp().onTrue(new InstantCommand(()-> {whaleServo.setTail();}));  //seems to activate chute UPDATE: FIXED by changing the pin slots in the code, because they were wrong.
+        driver.options().onTrue(new SetClimberServoCommandGroup(whaleServo, chuteServo)); // seems to activate whale tail UPDATE: Above.
         //operator.options().onTrue(new ClimberSetCommand(chuteServo, whaleServo));
         //Test Change
 
         //driver.povUp().onTrue(new AlgaePivotResetCommand(pivot));
 
-        driver.povLeft().onTrue(new CoralLevelOnePivotCommand(pivot));
+        //driver.povLeft().onTrue(new CoralLevelOnePivotCommand(pivot));
 
-        driver.povRight().onTrue(new CoralFromGroundPivotCommand(pivot));
+        //driver.povRight().onTrue(new CoralFromGroundPivotCommand(pivot));
+
+
+
+        //TRACK TO CAGE CONTROLS
+        //driver.povUp().whileTrue(new TrackToCageCommand(drivetrain, "center", DriverStation.getAlliance().get()));
+        //driver.povLeft().whileTrue(new TrackToCageCommand(drivetrain, "left", DriverStation.getAlliance().get()));
+
+        //driver.povRight().whileTrue(new TrackToCageCommand(drivetrain, "right", DriverStation.getAlliance().get()));
+
+        
 
         // OPERATOR CONTROLS
         // Coral Elevator Bindings
