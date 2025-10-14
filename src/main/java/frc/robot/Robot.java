@@ -113,11 +113,22 @@ public class Robot extends LoggedRobot  {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (alliance.isPresent()) {
+    /*if (alliance.isPresent()) {
       swerve.resetGyro(
           alliance.get() == Alliance.Blue ? 180 : 0)
       ;
   } 
+      */
+      /*if (alliance.isPresent()){
+        if (alliance.get() == Alliance.Blue){
+          swerve.resetGyro(180);
+          SmartDashboard.putString("Alliance", alliance.toString());
+        }
+        else{
+          swerve.resetGyro(0);
+        }
+      };
+      */
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
