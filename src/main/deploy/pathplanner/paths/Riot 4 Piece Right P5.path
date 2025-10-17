@@ -1,0 +1,126 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.6245267595563615,
+        "y": 0.6882940973554343
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.05320560909018,
+        "y": 1.1468358480125527
+      },
+      "isLocked": false,
+      "linkedName": "Station Pickup - Riot Right 4 Piece"
+    },
+    {
+      "anchor": {
+        "x": 3.6926692877040437,
+        "y": 2.980076886860476
+      },
+      "prevControl": {
+        "x": 3.2392790511131992,
+        "y": 2.4884890491864975
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "End P5 - Riot Right 4 Piece"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.0,
+      "maxWaypointRelativePos": 0.16913360177654105,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    },
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.8088766855736294,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 1.25,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Station Pick Up Command",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Station Pick Up Command"
+        }
+      }
+    },
+    {
+      "name": "L4 Check",
+      "waypointRelativePos": 0.5760397715111302,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4 Check"
+        }
+      }
+    },
+    {
+      "name": "L4 Check",
+      "waypointRelativePos": 0.700197319135274,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4 Check"
+        }
+      }
+    },
+    {
+      "name": "Raise L4",
+      "waypointRelativePos": 0.8508391079837326,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 59.99999999999999
+  },
+  "reversed": false,
+  "folder": "Ramp Riot 4 Piece Right",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 54.47023206219465
+  },
+  "useDefaultConstraints": true
+}
