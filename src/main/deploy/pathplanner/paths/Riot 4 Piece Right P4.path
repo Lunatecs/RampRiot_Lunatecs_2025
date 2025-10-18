@@ -45,7 +45,7 @@
     },
     {
       "name": "Station Pick Up Command",
-      "waypointRelativePos": 0.5466271805436645,
+      "waypointRelativePos": 0.5276156490796233,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

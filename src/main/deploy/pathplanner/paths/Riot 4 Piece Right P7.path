@@ -3,40 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.196,
-        "y": 3.0
+        "x": 1.6245267595563615,
+        "y": 0.6882940973554343
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.793884029753074,
-        "y": 2.677549454012299
+        "x": 2.0267409560602316,
+        "y": 1.5509784466662935
       },
       "isLocked": false,
-      "linkedName": "4 Piece Right Start Point"
+      "linkedName": "Station Pickup - Riot Right 4 Piece"
     },
     {
       "anchor": {
-        "x": 4.988870226191754,
-        "y": 2.80889661548252
+        "x": 3.1766656637191772,
+        "y": 3.850662790025983
       },
       "prevControl": {
-        "x": 5.508144841351282,
-        "y": 2.6020147181698285
+        "x": 2.9954131342143695,
+        "y": 3.6784782362817263
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "End P1 - Riot Right 4 Piece"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.786381969713185,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 0.12111966903895546,
       "constraints": {
         "maxVelocity": 3.0,
-        "maxAcceleration": 1.25,
+        "maxAcceleration": 2.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,24 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Raise L1",
-      "waypointRelativePos": 0,
+      "name": "Station Pick Up Command",
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L1"
-        }
-      }
-    },
-    {
-      "name": "Raise L4",
-      "waypointRelativePos": 0.8386942824272258,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "L4"
+          "name": "Station Pick Up Command"
         }
       }
     }
@@ -79,13 +68,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Ramp Riot 4 Piece Right",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 54.47023206219465
   },
   "useDefaultConstraints": true
 }
