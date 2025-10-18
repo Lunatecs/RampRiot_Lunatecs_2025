@@ -28,7 +28,7 @@ public class TrackToRightTagCommand extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new InstantCommand(() -> drivetrain.resetPoseBasedOnLL()),
-            new WaitCommand(0.25),
+            new WaitCommand(0.125),
             defer(
                 () -> AutoBuilder.pathfindToPose(
                     field.getNearestReefPoseRight(),

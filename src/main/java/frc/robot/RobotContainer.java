@@ -167,6 +167,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("L1", new ElevatorLevelOneCommand(elevator));
         NamedCommands.registerCommand("L2", new ElevatorLevelTwoCommand(elevator));
         NamedCommands.registerCommand("L4", new ElevatorLevelFourCommand(elevator));
+        NamedCommands.registerCommand("Pivot Safe Position", new AlgaePivotResetCommand(pivot));
         NamedCommands.registerCommand("Elevator Down", new ElevatorDownCommand(elevator));
         NamedCommands.registerCommand("Score At L4", new DeliverCoralAtHeight(new ElevatorLevelFourCommand(elevator), elevator, coralOutake, 69.8)); //70.65
         NamedCommands.registerCommand("Collect Algae L2", new AUTOAlgaeFromReef_PoolsideDelight(new ElevatorLevelTwoAlgaeCommand(elevator), liberator, pivot, elevator));
